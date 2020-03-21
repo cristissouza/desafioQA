@@ -1,0 +1,35 @@
+{
+  "name": "desafioqa",
+  "version": "1.0.0",
+  "description": "Esse desafio contém testes automatizados TDD, API e funcional",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristissouza/desafioQA.git"
+  },
+  "keywords": [
+    "TDD",
+    "API",
+    "Funcional",
+    "e2e"
+  ],
+  "author": "Cristiane Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cristissouza/desafioQA/issues"
+  },
+  "homepage": "https://github.com/cristissouza/desafioQA#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "cucumber": "^6.0.5",
+    "cucumber-html-reporter": "^5.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "protractor": "^5.4.3",
+    "protractor-cucumber-framework": "^6.2.1",
+    "webdriver-manager": "^12.1.7"
+  }
+}
