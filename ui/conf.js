@@ -7,7 +7,7 @@ const reporter = require('cucumber-html-reporter');
 exports.config = {
   seleniumAddress: process.env.E2E_WEBDRIVER_URL,
   ignoreUncaughtExceptions: true,
-  baseUrl: 'https://www.unimed.coop.br/',
+  baseUrl: process.env.SITE_URL,
   specs: ['features/*.feature'],
   defaultTimeoutInterval: 1000,
   framework: 'custom',
