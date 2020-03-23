@@ -4,7 +4,7 @@
   "description": "Testes TDD, API, Funcional",
   "main": "index.js",
   "scripts": {
-    "ui-test": "protractor conf.js",
+    "test": "protractor conf.js",
     "webdriver:update": "webdriver-manager update",
     "webdriver:start": "webdriver-manager start"
   },
