@@ -1,22 +1,25 @@
 /* eslint-disable import/no-extraneous-dependencies */
+const { browser, element } = require('protractor');
 const helper = require('../../utils/helper');
+
 
 class SearchDoctorUnimed {
   constructor() {
     this.searchBar = $('input#campo_pesquisa');
-    this.searchBtn = $('#btn_pesquisar');
+    this.searchDoctorBtn = $('#btn_pesquisar');
     this.stateSelect = $$('.css-19bqh2r').get(0);
     this.stateSearchArea = $$('input#react-select-2-input').get(0);
     this.citySelect = $$('.css-19bqh2r').get(1);
     this.citySearchArea = $$('input#react-select-2-input').get(1);
-    this.chooseLocation = $('[type="radio"]');
-    this.searchByLocationBtn = $('.btn.btn-success');
+    // this.chooseLocation = element(by.xpath('//*[contains(text(),"UNIMED RIO")]'));
+    this.chooseLocation = $('input[type="radio]');
+    this.searchBtn = $('button.btn.btn-success');
   }
 
 
   searchForMedicalSpecialty(doctor) {
     this.searchBar.sendKeys(doctor);
-    return this.searchBtn.click();
+    return this.searchDoctorBtn.click();
   }
 
   chooseState(state) {
@@ -31,13 +34,14 @@ class SearchDoctorUnimed {
     return helper.searchSelectOption(this.citySearchArea, city);
   }
 
-  choosePreferedLocation() {
-    helper.waitForElement(this.chooseLocation);
+  async choosePreferedLocation() {
+    await helper.waitForElement(this.chooseLocation);
     return this.chooseLocation.click();
   }
 
-  searchUsingLocation() {
-    return this.searchByLocationBtn.click();
+  search() {
+    helper.waitForElementToBeClickable(this.searchBtn);
+    return this.searchBtn.click();
   }
 }
 module.exports = new SearchDoctorUnimed();
