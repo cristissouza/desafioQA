@@ -1,0 +1,35 @@
+{
+  "name": "desafioqa",
+  "version": "1.0.0",
+  "description": "API",
+  "main": "movie.spec.js",
+  "scripts": {
+    "test": "mocha --timeout 20000 *.spec.js --reporter mochawesome"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristissouza/desafioQA.git"
+  },
+  "keywords": [
+    "TDD",
+    "API",
+    "funcional",
+    "e2e"
+  ],
+  "author": "Cristiane Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cristissouza/desafioQA/issues"
+  },
+  "homepage": "https://github.com/cristissouza/desafioQA#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "mocha": "^7.1.1",
+    "mochawesome": "^5.0.0",
+    "supertest": "^4.0.2"
+  }
+}
