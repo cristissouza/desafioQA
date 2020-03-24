@@ -1,9 +1,13 @@
-# More ignores 
+# ui-tests - report
 
-node_modules/
+ui/node_modules/
 results.html
 results.json
 debug.log
+
+
+# api-report
+api/mochawesome-report/
 
 ### Linux ###
 *~
