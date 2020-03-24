@@ -24,12 +24,6 @@ exports.config = {
         'verbose',
         'log-path=/tmp/chromedriver.log',
       ],
-      prefs: {
-        // disable chrome's annoying password manager
-        'profile.password_manager_enabled': false,
-        credentials_enable_service: false,
-        password_manager_enabled: false,
-      },
       w3c: false,
     },
   },
