@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { browser, element } = require('protractor');
+const { browser, element, by } = require('protractor');
 const helper = require('../../utils/helper');
 
 
@@ -11,8 +11,7 @@ class SearchDoctorUnimed {
     this.stateSearchArea = $$('input#react-select-2-input').get(0);
     this.citySelect = $$('.css-19bqh2r').get(1);
     this.citySearchArea = $$('input#react-select-2-input').get(1);
-    // this.chooseLocation = element(by.xpath('//*[contains(text(),"UNIMED RIO")]'));
-    this.chooseLocation = $('input[type="radio]');
+    this.chooseLocation = $('input[type="radio"]')
     this.searchBtn = $('button.btn.btn-success');
   }
 
@@ -28,15 +27,16 @@ class SearchDoctorUnimed {
     return helper.searchSelectOption(this.stateSearchArea, state);
   }
 
-  chooseCity(city) {
-    helper.waitForElement(this.citySearchArea);
-    this.citySelect.click();
+  async chooseCity(city) {
+    await helper.waitForElement(this.citySearchArea);
+    await browser.executeScript('return arguments[0].click()', this.citySelect);
     return helper.searchSelectOption(this.citySearchArea, city);
   }
 
   async choosePreferedLocation() {
     await helper.waitForElement(this.chooseLocation);
-    return this.chooseLocation.click();
+    await browser.executeScript('return arguments[0].click()', chooseLocation);
+    return this;
   }
 
   search() {

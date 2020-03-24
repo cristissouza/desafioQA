@@ -4,10 +4,14 @@ const { expect } = require('chai');
 const {
   Given, When, Then, setDefaultTimeout,
 } = require('cucumber');
-const { browser } = require('protractor');
+const { browser, protractor } = require('protractor');
 const helper = require('../../utils/helper');
 const searchForDoctor = require('../page_objects/unimed.page');
 const homePage = require('../page_objects/unimedHome.page');
+const searchResult = require('../page_objects/searchDoctorResult.page');
+const cityRio = 'Rio de Janeiro';
+const doctorRio = 'Neurologia';
+const citySaoPaulo = "São Paulo"
 
 setDefaultTimeout(35 * 1000);
 
@@ -24,33 +28,45 @@ When('decido procurar por um médico', () => {
 });
 
 When('escolho a especialidade {string} na cidade do {string}', { timeout: 40000 }, async (string, string2) => {
-  helper.waitForElement(searchForDoctor.searchBar);
-
+  await helper.waitForElement(searchForDoctor.searchBar);
   await searchForDoctor.searchForMedicalSpecialty(string);
+
+
   await helper.waitForElement(searchForDoctor.stateSelect);
   await searchForDoctor.chooseState(string2);
+  await browser.actions().sendKeys(protractor.Key.ENTER).perform();
   await helper.waitForElementToBeClickable(searchForDoctor.citySelect);
   await searchForDoctor.chooseCity(string2);
-  await browser.actions().sendKeys(protractor.Key.ENTER).perform();
   await searchForDoctor.choosePreferedLocation();
   await helper.waitForElementToBeClickable(searchForDoctor.searchBtn);
   await searchForDoctor.search();
 });
 
+When('decido visualizar a segunda página do resultado da pesquisa', async() => {
+  await helper.waitForElement(searchResult.doctor);
+  await helper.waitForElement(searchResult.pageTwo);
+  await searchResult.goToResultSecondPage();
+  await helper.waitForElement(searchResult.doctor);
+});
+
+When('decido visualizar a terceira página do resultado da pesquisa', async () =>  {
+  await helper.waitForElement(searchResult.doctor);
+  await helper.waitForElement(searchResult.pageThree);
+  await searchResult.goToResultSecondPage();
+  await helper.waitForElement(searchResult.doctor);
+});
 
 // Start THEN statements
-Then('devo visualizar a listagem dessa expecialidade na cidade', () =>
-// Write code here that turns the phrase above into concrete actions
-  'pending');
+Then('devo visualizar a listagem dessa expecialidade na cidade', async() => {
+await helper.waitForElement(searchResult.doctor);
+const searchMatchCity = await searchResult.getAllDoctorScpeacialtyOnPage(doctorRio);
+const searchMatchDoctor = await searchResult.getAllCityElementOnPage(cityRio);
+expect(searchMatchCity).to.equal(20);
+expect(searchMatchDoctor).to.equal(20);
+});
 
-Then('a primeira página da pesquisa não deve conter especialista na cidade de São Paulo', () =>
-// Write code here that turns the phrase above into concrete actions
-  'pending');
-
-Then('a segunda página da pesquisa não deve conter especialista na cidade de São Paulo', () =>
-// Write code here that turns the phrase above into concrete actions
-  'pending');
-
-Then('a terceira página da pesquisa não deve conter especialista na cidade de São Paulo', () =>
-// Write code here that turns the phrase above into concrete actions
-  'pending');
+Then('o resultado da pesquisa não deve conter informações da cidade de São Paulo', async() => {
+  await helper.waitForElement(searchResult.doctor);
+  const searchMatchDoctor = await searchResult.getAllCityElementOnPage(citySaoPaulo);
+  expect(searchMatchCity).to.equal(0);
+});
