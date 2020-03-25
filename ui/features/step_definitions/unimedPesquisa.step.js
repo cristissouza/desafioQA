@@ -32,7 +32,7 @@ When('escolho a especialidade {string} na cidade do {string}', { timeout: 40000 
   await searchForDoctor.searchForMedicalSpecialty(string);
   await helper.waitForElementToBeClickable(searchForDoctor.stateSelect);
    await searchForDoctor.chooseState(string2);
-   await helper.waitForElement(searchForDoctor.searchBtn);
+  //  await searchForDoctor.chooseCity(string2);
    await searchForDoctor.choosePreferedLocation();
    await searchForDoctor.search();
 });
@@ -53,8 +53,6 @@ When('decido visualizar a terceira página do resultado da pesquisa', async () =
 
 // Start THEN statements
 Then('devo visualizar a listagem dessa expecialidade na cidade', async() => {
-  await browser.sleep(5000)
-
  const searchMatchDoctor =  await searchResult.getAllDoctorSpecialtyOnPage(doctorRio);
  expect(searchMatchDoctor).to.equal(20);
 
