@@ -22,16 +22,9 @@ class SearchResult {
     return this.pageThree.click();
   }
 
-  async getAllDoctorSpecialtyOnPage(doctor){
-    const specialtyResult =  (await this.doctor).map( async (item) => {await  item.getText(); });
-    let result = 0;
-    for (let i = 0; i < specialtyResult.length; i++) {
-      let elem = specialtyResult[i];
-      if(elem.includes(doctor) === true){
-        result++
-      }
-    }
-    return result;
+  async getAllDoctorSpecialtyOnPage(){
+    return this.doctor.map( item => item.getText());
+
   }
 
 
