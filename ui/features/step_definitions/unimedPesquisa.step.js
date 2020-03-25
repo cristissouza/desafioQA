@@ -53,12 +53,14 @@ When('decido visualizar a terceira página do resultado da pesquisa', async () =
 
 // Start THEN statements
 Then('devo visualizar a listagem dessa expecialidade na cidade', async() => {
-  await helper.waitForElement(searchResult.doctor);
- const searchMatchDoctor =  await searchResult.getAllDoctorSpecialtyOnPage(doctorRio);
- expect(searchMatchDoctor).to.equal(20);
-
- const searchMatchCity =  await searchResult.getAllCityElementOnPage(cityRio);
- expect(searchMatchCity).to.equal(20);
+   await helper.waitForElement(searchResult.pageTwo);
+   await searchResult.getAllDoctorSpecialtyOnPage().then((text) => {
+     const doctorResult = text.toString().trim();
+     const changeResult = doctorResult.split(",")
+     for (let i = 0; i < changeResult.length; i++) {     
+        expect(changeResult[i]).to.equal('Neurologia')
+      }
+   });
 });
 
 Then('o resultado da pesquisa não deve conter informações da cidade de São Paulo', async() => {
