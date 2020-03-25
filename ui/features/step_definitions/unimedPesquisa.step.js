@@ -30,16 +30,11 @@ When('decido procurar por um médico', () => {
 When('escolho a especialidade {string} na cidade do {string}', { timeout: 40000 }, async (string, string2) => {
   await helper.waitForElement(searchForDoctor.searchBar);
   await searchForDoctor.searchForMedicalSpecialty(string);
-
-
-  await helper.waitForElement(searchForDoctor.stateSelect);
-  await searchForDoctor.chooseState(string2);
-  await browser.actions().sendKeys(protractor.Key.ENTER).perform();
-  await helper.waitForElementToBeClickable(searchForDoctor.citySelect);
-  await searchForDoctor.chooseCity(string2);
-  await searchForDoctor.choosePreferedLocation();
-  await helper.waitForElementToBeClickable(searchForDoctor.searchBtn);
-  await searchForDoctor.search();
+  await helper.waitForElementToBeClickable(searchForDoctor.stateSelect);
+   await searchForDoctor.chooseState(string2);
+   await helper.waitForElement(searchForDoctor.searchBtn);
+   await searchForDoctor.choosePreferedLocation();
+   await searchForDoctor.search();
 });
 
 When('decido visualizar a segunda página do resultado da pesquisa', async() => {
@@ -58,11 +53,13 @@ When('decido visualizar a terceira página do resultado da pesquisa', async () =
 
 // Start THEN statements
 Then('devo visualizar a listagem dessa expecialidade na cidade', async() => {
-await helper.waitForElement(searchResult.doctor);
-const searchMatchCity = await searchResult.getAllDoctorScpeacialtyOnPage(doctorRio);
-const searchMatchDoctor = await searchResult.getAllCityElementOnPage(cityRio);
-expect(searchMatchCity).to.equal(20);
-expect(searchMatchDoctor).to.equal(20);
+  await browser.sleep(5000)
+
+ const searchMatchDoctor =  await searchResult.getAllDoctorSpecialtyOnPage(doctorRio);
+ expect(searchMatchDoctor).to.equal(20);
+
+ const searchMatchCity =  await searchResult.getAllCityElementOnPage(cityRio);
+ expect(searchMatchCity).to.equal(20);
 });
 
 Then('o resultado da pesquisa não deve conter informações da cidade de São Paulo', async() => {
