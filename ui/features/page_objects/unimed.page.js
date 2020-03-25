@@ -21,22 +21,16 @@ class SearchDoctorUnimed {
     return this.searchDoctorBtn.click();
   }
 
-  chooseState(state) {
-    helper.waitForElement(this.stateSearchArea);
-    this.stateSelect.click();
-    return helper.searchSelectOption(this.stateSearchArea, state);
+  async chooseState(state) {
+   return helper.searchSelectOption(this.stateSearchArea, state);
   }
 
-  async chooseCity(city) {
-    await helper.waitForElement(this.citySearchArea);
-    await browser.executeScript('return arguments[0].click()', this.citySelect);
-    return helper.searchSelectOption(this.citySearchArea, city);
+   async chooseCity(city) {
+     return helper.searchSelectOption(this.citySearchArea, city);
   }
 
   async choosePreferedLocation() {
-    await helper.waitForElement(this.chooseLocation);
-    await browser.executeScript('return arguments[0].click()', chooseLocation);
-    return this;
+  return this.chooseLocation.click();
   }
 
   search() {

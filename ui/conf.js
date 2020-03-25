@@ -10,6 +10,8 @@ exports.config = {
   baseUrl: process.env.SITE_URL,
   specs: ['features/*.feature'],
   defaultTimeoutInterval: 1000,
+  directConnect: false,
+  highlightDelay: 1000,
   framework: 'custom',
   capabilities: {
     browserName: 'chrome',
