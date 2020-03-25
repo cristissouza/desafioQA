@@ -64,7 +64,13 @@ Then('devo visualizar a listagem dessa expecialidade na cidade', async() => {
 });
 
 Then('o resultado da pesquisa não deve conter informações da cidade de São Paulo', async() => {
-  await helper.waitForElement(searchResult.doctor);
-  const searchMatchDoctor = await searchResult.getAllCityElementOnPage(citySaoPaulo);
-  expect(searchMatchCity).to.equal(0);
+  await helper.waitForElement(searchResult.pageTwo);
+   await searchResult.getAllCityElementOnPage().then((text) => {
+      const addressResult =  text.toString().trim();
+      const changeResult = addressResult.split("")
+      for (let i = 0; i < changeResult.length; i++) {     
+        expect(changeResult[i]).to.equal('Janeiro')
+      }
+      
+    });
 });
