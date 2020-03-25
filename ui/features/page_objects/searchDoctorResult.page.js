@@ -27,17 +27,8 @@ class SearchResult {
 
   }
 
-
   async getAllCityElementOnPage(city) {
-    const addressResult = ( await this.address).map(async (item) => { await item.getText(); });
-    let result = 0;
-    for (let i = 0; i < addressResult.length; i++) {
-      if(addressResult[i].includes(city)){
-        result++
-      }
-    }
-    return result;
+    return this.address.map( item => item.getText());
   }
-
 }
 module.exports =  new SearchResult()
