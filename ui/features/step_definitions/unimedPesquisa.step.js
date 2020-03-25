@@ -53,6 +53,7 @@ When('decido visualizar a terceira página do resultado da pesquisa', async () =
 
 // Start THEN statements
 Then('devo visualizar a listagem dessa expecialidade na cidade', async() => {
+  await helper.waitForElement(searchResult.doctor);
  const searchMatchDoctor =  await searchResult.getAllDoctorSpecialtyOnPage(doctorRio);
  expect(searchMatchDoctor).to.equal(20);
 
