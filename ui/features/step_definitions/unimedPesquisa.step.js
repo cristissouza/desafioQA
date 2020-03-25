@@ -67,10 +67,13 @@ Then('o resultado da pesquisa não deve conter informações da cidade de São P
   await helper.waitForElement(searchResult.pageTwo);
    await searchResult.getAllCityElementOnPage().then((text) => {
       const addressResult =  text.toString().trim();
-      const changeResult = addressResult.split("")
-      for (let i = 0; i < changeResult.length; i++) {     
-        expect(changeResult[i]).to.equal('Janeiro')
+      const changeResult = addressResult.split(",")
+      let result = 0; 
+      for (let i = 0; i < changeResult.length; i++) { 
+        if(changeResult[i].includes('Rio de Janeiro')){
+          result++
+        }    
       }
-      
-    });
+        expect(result).to.equal(20)
+      });
 });
