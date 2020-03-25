@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { browser, element } = require('protractor');
+const { browser, element, protractor } = require('protractor');
 const helper = require('../../utils/helper');
 
 
@@ -12,10 +12,13 @@ class SearchResult {
   }
 
   goToResultSecondPage(){
+    browser.actions().sendKeys(protractor.Key.PAGE_DOWN).perform();
     return this.pageTwo.click();
+    
   }
 
   goToResultThrirdPage(){
+    browser.actions().sendKeys(protractor.Key.PAGE_DOWN).perform();
     return this.pageThree.click();
   }
 
