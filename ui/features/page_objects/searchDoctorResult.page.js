@@ -19,12 +19,12 @@ class SearchResult {
     return this.pageThree.click();
   }
 
-  getAllDoctorScpeacialtyOnPage(doctor){
-    const specialtyResult =  await (this.doctor).map(async (item) => { await item.getText(); });
+  async getAllDoctorSpecialtyOnPage(doctor){
+    const specialtyResult =  (await this.doctor).map( async (item) => {await  item.getText(); });
     let result = 0;
-
     for (let i = 0; i < specialtyResult.length; i++) {
-      if(specialtyResult[i].includes(doctor)){
+      let elem = specialtyResult[i];
+      if(elem.includes(doctor) === true){
         result++
       }
     }
@@ -33,9 +33,8 @@ class SearchResult {
 
 
   async getAllCityElementOnPage(city) {
-    const addressResult = await(this.address).map(async (item) => { await item.getText(); });
+    const addressResult = ( await this.address).map(async (item) => { await item.getText(); });
     let result = 0;
-
     for (let i = 0; i < addressResult.length; i++) {
       if(addressResult[i].includes(city)){
         result++
