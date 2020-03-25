@@ -1,22 +1,26 @@
 # desafioQA
-Este reposítório contém alguns desafios com testes automatizados TDD, API e teste funcionais (javascript)
 
-Para executar os testes de UI, API e TDD siga os seguintes passos
+Para executar esse projeto, sia os passos descritos a seguir:
+*clone esse repositótio*
+Para instalar as dependências do projeto, em cada pasta de teste, ***ui, tdd e api***, execute o comando ***npm install** respectivamente.
 
-*Clone esse repositório
-* Dentro de cada diretório (ui, tdd, api), existe o arquivo ***package.json*** com as dependências necessárias para executar cada projeto.
-* Instale as dependências dando o comando ***npm install**
+**Executando os teste de UI**
+* Execute o webdriver para rodar os teste de UI executando o comando ***npm run webdriver:update*** 
+* Em seguida execute o comando ***npm run webdriver:start***
+* Para rodar os testes, execute o comando  ***npm run test*** 
 
-Todos os projetos são executados através do comando ***npm run test***
-Porém, para executar o testes de UI, será necessário executar antes os seguintes comandos:
-  *npm run webdriver:update
-  *npm run webdriver:start
- Aps esses comandos para levantar o webdriver, será possível executar os testes através do comando ***npm run test***
+**Executando os teste de TDD**
+* Dentro da pasta tdd, após a instalação das dependências do projeto, execute o comando ***npm run test*** 
+
+**Executando os teste de API**
+* Dentro da pasta api, após a instalação das dependências do projeto, execute o comando ***npm run test*** 
 
 
-**Tecnologias necessárias** 
-*java jdk
-*node
-*protractor
-*mocha
-*chai
+**Tecnologias utilizadas/necessárias**
+ *Java JDK
+ *Node
+* Mocha
+* Chai
+* Supertest
+* Protractor
+* ES6
