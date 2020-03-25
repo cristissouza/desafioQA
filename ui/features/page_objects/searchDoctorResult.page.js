@@ -6,8 +6,8 @@ const helper = require('../../utils/helper');
 class SearchResult {
   constructor() {
     this.doctor =  $$('#txt_especialidade+span');
-    this.pageTwo = $$('a[href*=lista_por]').get(4)
-    this.pageThree = $$('a[href*=lista_por]').get(5)
+    this.pageTwo = $$('a[href*=lista_por]').get(3)
+    this.pageThree = $$('a[href*=lista_por]').get(4)
     this.address = $$('span#txt_endereco')
   }
 

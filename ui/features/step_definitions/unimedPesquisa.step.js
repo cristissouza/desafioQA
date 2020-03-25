@@ -38,17 +38,13 @@ When('escolho a especialidade {string} na cidade do {string}', { timeout: 40000 
 });
 
 When('decido visualizar a segunda página do resultado da pesquisa', async() => {
-  await helper.waitForElement(searchResult.doctor);
   await helper.waitForElement(searchResult.pageTwo);
   await searchResult.goToResultSecondPage();
-  await helper.waitForElement(searchResult.doctor);
 });
 
 When('decido visualizar a terceira página do resultado da pesquisa', async () =>  {
-  await helper.waitForElement(searchResult.doctor);
   await helper.waitForElement(searchResult.pageThree);
   await searchResult.goToResultSecondPage();
-  await helper.waitForElement(searchResult.doctor);
 });
 
 // Start THEN statements
